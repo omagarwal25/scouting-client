@@ -1,32 +1,35 @@
+import { useAtom } from 'jotai';
 import { StyleSheet } from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
 
-export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+import { resetGameAtom } from '../state';
+import { container } from '../styles/container';
+import { RootTabScreenProps } from '../types';
+import { Button } from '../components/Button';
+
+export default function TabOneScreen({
+  navigation,
+}: RootTabScreenProps<'TabOne'>) {
+  const [_, reset] = useAtom(resetGameAtom);
+
+  const handleManual = () => {
+    reset();
+    navigation.navigate('Info');
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+    <View style={container.container}>
+      <Text style={styles.title}>Griffins Scout</Text>
+
+      <Button label="Manual Entry" onPress={handleManual} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
   },
 });

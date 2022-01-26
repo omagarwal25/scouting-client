@@ -1,5 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
+import { Suspense } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Text } from './components/Themed';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
@@ -14,8 +16,10 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
+        <Suspense fallback={<Text>Loading...</Text>}>
+          <Navigation colorScheme={colorScheme} />
+          <StatusBar />
+        </Suspense>
       </SafeAreaProvider>
     );
   }
