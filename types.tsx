@@ -26,6 +26,7 @@ export type RootStackParamList = {
   Endgame: undefined;
   Other: undefined;
   QR: undefined;
+  Scanner: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

@@ -24,6 +24,7 @@ import NotFoundScreen from '../screens/NotFoundScreen';
 import { OtherModal } from '../screens/OtherModal';
 import { PregameModal } from '../screens/PregameModal';
 import { QRCodeModal } from '../screens/QRCodeModal';
+import { ScannerModal } from '../screens/ScannerModal';
 import TabOneScreen from '../screens/TabOneScreen';
 import { TeleopModal } from '../screens/TeleopModal';
 import {
@@ -75,6 +76,7 @@ function RootNavigator() {
         <Stack.Screen name="Endgame" component={EndgameModal} />
         <Stack.Screen name="Other" component={OtherModal} />
         <Stack.Screen name="QR" component={QRCodeModal} />
+        <Stack.Screen name="Scanner" component={ScannerModal} />
       </Stack.Group>
     </Stack.Navigator>
   );

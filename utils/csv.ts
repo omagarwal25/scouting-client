@@ -4,9 +4,9 @@ export const encode = (game: Game): string => {
 
   return `${encodeAuto(auto)},${pregame.preloadedBalls},${encodeTeleop(
     teleop
-  )},${encodeEndgame(endgame)},${encodeGameInfo(gameInfo)},"${other.notes}",${
-    other.rank
-  },${other.scoutInitials}`;
+  )},${encodeEndgame(endgame)},${encodeGameInfo(gameInfo)},${other.rank},${
+    other.scoutInitials
+  }`;
 };
 
 export const encodeGameInfo = ({

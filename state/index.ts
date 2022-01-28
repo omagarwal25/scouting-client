@@ -37,7 +37,6 @@ const initialValue: Game = {
     teamColor: 'red',
   },
   other: {
-    notes: '',
     rank: 1,
     scoutInitials: 'OA',
   },
@@ -49,6 +48,12 @@ const initialValue: Game = {
 export const gameAtom = atomWithStorage<Game>(
   'game',
   initialValue,
+  createJSONStorage(() => AsyncStorage)
+);
+
+export const previousGamesAtom = atomWithStorage<Array<Game>>(
+  'games',
+  [],
   createJSONStorage(() => AsyncStorage)
 );
 export const gameInfoAtom = focusAtom(gameAtom, (optic) =>
@@ -64,6 +69,13 @@ export const endgameAtom = focusAtom(gameAtom, (optic) =>
 export const teleopAtom = focusAtom(gameAtom, (optic) => optic.prop('teleop'));
 export const autoAtom = focusAtom(gameAtom, (optic) => optic.prop('auto'));
 
-export const resetGameAtom = atom(null, (_get, set, _update) => {
-  set(gameAtom, initialValue);
+export const resetGameAtom = atom(null, async (get, set, _update) => {
+  await set(gameAtom, { ...initialValue });
 });
+
+// export const saveGameAtom = atom(null, async (get, set) => {
+//   const previousGames = await get(previousGamesAtom);
+//   const newPreviousGames = [...previousGames, { ...(await get(gameAtom)) }];
+
+//   set(previousGamesAtom, { ...newPreviousGames });
+// });

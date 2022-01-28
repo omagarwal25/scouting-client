@@ -38,10 +38,6 @@ export function OtherModal({ navigation }: RootTabScreenProps<'TabOne'>) {
     <>
       <Topbar />
       <View style={container.container}>
-        {/** TODO clean this up so that is actually formats well */}
-        <TextInput control={{ control, name: 'notes' }} label="Notes" />
-        <Text style={input.errorText}>{errors.notes?.message}</Text>
-
         <NumericInput control={{ control, name: 'rank' }} label="Rank (1-4)" />
         <Text style={input.errorText}>{errors.rank?.message}</Text>
 

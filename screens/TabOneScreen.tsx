@@ -13,9 +13,14 @@ export default function TabOneScreen({
 }: RootTabScreenProps<'TabOne'>) {
   const [_, reset] = useAtom(resetGameAtom);
 
-  const handleManual = () => {
-    reset();
+  const handleManual = async () => {
+    await reset();
     navigation.navigate('Info');
+  };
+
+  const handleQR = async () => {
+    await reset();
+    navigation.navigate('Scanner');
   };
 
   return (
@@ -23,6 +28,7 @@ export default function TabOneScreen({
       <Text style={styles.title}>Griffins Scout</Text>
 
       <Button label="Manual Entry" onPress={handleManual} />
+      <Button label="QR Entry" onPress={handleQR} />
     </View>
   );
 }
