@@ -1,17 +1,17 @@
-import {
-  BarCodeScannedCallback,
-  BarCodeScanner,
-  PermissionStatus,
-} from 'expo-barcode-scanner';
+import { BarCodeScannedCallback, BarCodeScanner } from 'expo-barcode-scanner';
 import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 import { container } from '../styles/container';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
+import { gameInfoAtom } from '../state';
+import { useAtom } from 'jotai';
+import { decodeGameInfo } from '../utils/csv';
 
 export const ScannerModal = ({ navigation }: RootTabScreenProps<'TabOne'>) => {
   const [hasPermission, setHasPermission] = useState<null | boolean>(null);
   const [scanned, setScanned] = useState(false);
+  const [_, setGameInfo] = useAtom(gameInfoAtom);
 
   useEffect(() => {
     (async () => {
@@ -20,9 +20,14 @@ export const ScannerModal = ({ navigation }: RootTabScreenProps<'TabOne'>) => {
     })();
   }, []);
 
-  const handleBarCodeScanned: BarCodeScannedCallback = ({ type, data }) => {
+  const handleBarCodeScanned: BarCodeScannedCallback = async ({
+    type,
+    data,
+  }) => {
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    await setGameInfo(decodeGameInfo(data));
+
+    navigation.navigate('Pregame');
   };
 
   if (hasPermission === null) {

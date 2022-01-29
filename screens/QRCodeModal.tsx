@@ -7,7 +7,7 @@ import { container } from '../styles/container';
 import layout from '../constants/Layout';
 import { Topbar } from '../components/Topbar';
 import { RootTabScreenProps } from '../types';
-
+import { Button } from '../components/Button';
 import useColorScheme from '../hooks/useColorScheme';
 import Colors from '../constants/Colors';
 import { encode } from '../utils/csv';
@@ -26,6 +26,7 @@ export function QRCodeModal({ navigation }: RootTabScreenProps<'TabOne'>) {
       <View style={container.container}>
         <QRCode
           value={encode(game)}
+          // value={JSON.stringify(game.gameInfo)}
           size={layout.window.width * 0.9}
           ecl="L"
           {...(colorScheme === 'dark'
@@ -33,18 +34,14 @@ export function QRCodeModal({ navigation }: RootTabScreenProps<'TabOne'>) {
             : { color: Colors['light'].tint })}
         />
 
-        <Pressable
+        <View style={{ padding: 2 }} />
+
+        <Button
           onPress={async () => {
-            // await saveGame();
             navigation.navigate('TabOne');
           }}
-          style={({ pressed }) => [
-            getButton(colorScheme, pressed),
-            { margin: 10 },
-          ]}
-        >
-          <Text style={button.btnText}>Go Home!</Text>
-        </Pressable>
+          label="Go Home!"
+        ></Button>
       </View>
     </>
   );

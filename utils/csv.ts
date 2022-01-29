@@ -18,6 +18,18 @@ export const encodeGameInfo = ({
 }: GameInfo) =>
   `${matchNumber},${matchType},${scoutId},${teamColor},${teamNumber}`;
 
+export const decodeGameInfo = (s: string): GameInfo => {
+  const split = s.split(',');
+
+  return {
+    matchNumber: Number(split[0]),
+    matchType: split[1] as GameInfo['matchType'],
+    scoutId: Number(split[2]),
+    teamColor: split[3] as GameInfo['teamColor'],
+    teamNumber: Number(split[4]),
+  };
+};
+
 export const encodeBalls = (ball: Ball) =>
   `${ball.intakeFloor},${ball.intakeHuman},${ball.missed},${ball.scoredHigh},${ball.scoredLow}`;
 

@@ -26,8 +26,9 @@ export default function TabOneScreen({
   return (
     <View style={container.container}>
       <Text style={styles.title}>Griffins Scout</Text>
-
+      <View style={{ padding: 2 }} />
       <Button label="Manual Entry" onPress={handleManual} />
+      <View style={{ padding: 2 }} />
       <Button label="QR Entry" onPress={handleQR} />
     </View>
   );
