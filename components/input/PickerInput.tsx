@@ -3,6 +3,7 @@ import { Text, View } from '../Themed';
 import { getPicker, getPickerItemStyle, input } from '../../styles/input';
 import { Picker } from '@react-native-picker/picker';
 import useColorScheme from '../../hooks/useColorScheme';
+import * as Haptics from 'expo-haptics';
 
 type Props<T> = {
   control: UseControllerProps<T>;
@@ -15,6 +16,11 @@ export const PickerInput = <T extends object>(props: Props<T>) => {
     field: { value, onChange },
   } = useController(props.control);
 
+  const onPick = async (e: unknown) => {
+    onChange(e);
+    await Haptics.selectionAsync();
+  };
+
   return (
     <View style={input.inputWrapper}>
       <Text>{props.label}</Text>
@@ -22,7 +28,7 @@ export const PickerInput = <T extends object>(props: Props<T>) => {
         style={getPicker(colorScheme)}
         selectedValue={value}
         itemStyle={getPickerItemStyle(colorScheme)}
-        onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
+        onValueChange={(itemValue, itemIndex) => onPick(itemValue)}
       >
         {props.items.map((e) => (
           <Picker.Item label={e.label} value={e.value} key={e.value} />

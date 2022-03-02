@@ -23,6 +23,7 @@ import InfoModal from '../screens/InfoModal';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import { OtherModal } from '../screens/OtherModal';
 import { PregameModal } from '../screens/PregameModal';
+import { PreviewModal } from '../screens/PreviewModal';
 import { QRCodeModal } from '../screens/QRCodeModal';
 import { ScannerModal } from '../screens/ScannerModal';
 import TabOneScreen from '../screens/TabOneScreen';
@@ -77,6 +78,7 @@ function RootNavigator() {
         <Stack.Screen name="Other" component={OtherModal} />
         <Stack.Screen name="QR" component={QRCodeModal} />
         <Stack.Screen name="Scanner" component={ScannerModal} />
+        <Stack.Screen name="Preview" component={PreviewModal} />
       </Stack.Group>
     </Stack.Navigator>
   );

@@ -7,6 +7,7 @@ import { Button } from '../Button';
 import { FontAwesome } from '@expo/vector-icons';
 import Colors from '../../constants/Colors';
 import { increment } from '../../styles/increment';
+import * as Haptic from 'expo-haptics';
 
 type Props<T> = {
   control: UseControllerProps<T>;
@@ -25,6 +26,16 @@ export const IncrementInput = <T extends object>(props: Props<T>) => {
       : increment.lightIncrementButton,
   ];
 
+  const onIncrement = async () => {
+    onChange(Number(value) + 1);
+    await Haptic.selectionAsync();
+  };
+
+  const onDecrement = async () => {
+    onChange(Number(value) - 1);
+    await Haptic.selectionAsync();
+  };
+
   return (
     <View style={input.inputWrapper}>
       <Text style={{ flexGrow: 1 }}>
@@ -36,21 +47,18 @@ export const IncrementInput = <T extends object>(props: Props<T>) => {
           flexDirection: 'row',
           height: 45,
           maxWidth: '20%',
-          padding: 5,
+          padding: 2,
           alignItems: 'center',
           justifyContent: 'center',
           marginRight: 0,
           marginLeft: 'auto',
         }}
       >
-        <Pressable
-          onPress={() => onChange(Number(value) + 1)}
-          style={[incrementBtn]}
-        >
+        <Pressable onPress={onIncrement} style={[incrementBtn]}>
           <FontAwesome color={Colors[colorScheme].tint} name="plus" />
         </Pressable>
         <Pressable
-          onPress={() => onChange(Number(value) - 1)}
+          onPress={onDecrement}
           style={[incrementBtn, { marginLeft: 10 }]}
         >
           <FontAwesome name="minus" color={Colors[colorScheme].tint} />

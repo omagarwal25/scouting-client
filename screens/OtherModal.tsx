@@ -31,7 +31,7 @@ export function OtherModal({ navigation }: RootTabScreenProps<'TabOne'>) {
 
   const onSubmit = handleSubmit((f) => {
     setOther(f);
-    navigation.navigate('QR');
+    navigation.navigate('Preview');
   });
 
   return (

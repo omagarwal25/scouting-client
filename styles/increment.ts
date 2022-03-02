@@ -4,7 +4,7 @@ export const increment = StyleSheet.create({
   incrementButton: {
     borderWidth: 1,
     borderRadius: 4,
-    padding: 10,
+    padding: 13,
   },
   darkIncrementButton: {
     borderColor: Colors['dark'].tint,

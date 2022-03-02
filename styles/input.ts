@@ -49,6 +49,15 @@ export const input = StyleSheet.create({
   },
 });
 
+export const checkboxInput = StyleSheet.create({
+  input: {
+    height: 40,
+    padding: 10,
+    marginRight: 0,
+    marginLeft: 'auto',
+  },
+});
+
 export const getInput = (theme: 'light' | 'dark') => [
   theme === 'light' ? input.lightInput : input.darkInput,
   input.input,
