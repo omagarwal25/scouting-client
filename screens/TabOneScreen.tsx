@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
 import { StyleSheet } from 'react-native';
 
-import { Text, View } from '../components/Themed';
+import { Text, View, ScrollView } from '../components/Themed';
 
 import { resetGameAtom } from '../state';
 import { container } from '../styles/container';
@@ -24,13 +24,13 @@ export default function TabOneScreen({
   };
 
   return (
-    <View style={container.container}>
+    <ScrollView style={container.container}>
       <Text style={styles.title}>Griffins Scout</Text>
       <View style={{ padding: 2 }} />
       <Button label="Manual Entry" onPress={handleManual} />
       <View style={{ padding: 2 }} />
       <Button label="QR Entry" onPress={handleQR} />
-    </View>
+    </ScrollView>
   );
 }
 

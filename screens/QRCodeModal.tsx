@@ -1,4 +1,4 @@
-import { View, Text } from '../components/Themed';
+import { View, ScrollView } from '../components/Themed';
 
 // import { gameAtom, saveGameAtom } from '../state';
 import QRCode from 'react-native-qrcode-svg';
@@ -11,19 +11,35 @@ import { Button } from '../components/Button';
 import useColorScheme from '../hooks/useColorScheme';
 import Colors from '../constants/Colors';
 import { encode } from '../utils/csv';
-import { Pressable } from 'react-native';
-import { button, getButton } from '../styles/button';
 import { gameAtom } from '../state';
+import { Alert } from 'react-native';
 
 export function QRCodeModal({ navigation }: RootTabScreenProps<'TabOne'>) {
   const [game] = useAtom(gameAtom);
   const colorScheme = useColorScheme();
   // const [_, saveGame] = useAtom(saveGameAtom);
 
+  const createAlert = () =>
+    Alert.alert(
+      'Confirm Back?',
+      'By going back, your data for this match will be lost.',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Confirm',
+          style: 'destructive',
+          onPress: () => navigation.navigate('TabOne'),
+        },
+      ]
+    );
+
   return (
     <>
       <Topbar />
-      <View style={container.container}>
+      <ScrollView style={container.container}>
         <QRCode
           value={encode(game)}
           // value={JSON.stringify(game.gameInfo)}
@@ -36,13 +52,8 @@ export function QRCodeModal({ navigation }: RootTabScreenProps<'TabOne'>) {
 
         <View style={{ padding: 2 }} />
 
-        <Button
-          onPress={async () => {
-            navigation.navigate('TabOne');
-          }}
-          label="Go Home!"
-        ></Button>
-      </View>
+        <Button onPress={() => createAlert()} label="Go Home!"></Button>
+      </ScrollView>
     </>
   );
 }

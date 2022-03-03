@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import { Text, View } from '../components/Themed';
+import { ScrollView, Text } from '../components/Themed';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { otherAtom } from '../state';
@@ -12,8 +12,6 @@ import { Other, otherSchema } from '../models';
 import { Topbar } from '../components/Topbar';
 import { RootTabScreenProps } from '../types';
 import { Button } from '../components/Button';
-import { SwitchInput } from '../components/input/SwitchInput';
-import { PickerInput } from '../components/input/PickerInput';
 import { TextInput } from '../components/input/TextInput';
 import { NumericInput } from '../components/input/NumericInput';
 
@@ -37,8 +35,8 @@ export function OtherModal({ navigation }: RootTabScreenProps<'TabOne'>) {
   return (
     <>
       <Topbar />
-      <View style={container.container}>
-        <NumericInput control={{ control, name: 'rank' }} label="Rank (1-4)" />
+      <ScrollView style={container.container}>
+        <NumericInput control={{ control, name: 'rank' }} label="Rank (1-10)" />
         <Text style={input.errorText}>{errors.rank?.message}</Text>
 
         <TextInput
@@ -48,7 +46,7 @@ export function OtherModal({ navigation }: RootTabScreenProps<'TabOne'>) {
         <Text style={input.errorText}>{errors.scoutInitials?.message}</Text>
 
         <Button label="Next" onPress={onSubmit} />
-      </View>
+      </ScrollView>
     </>
   );
 }

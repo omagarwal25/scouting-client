@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import { Text, View } from '../components/Themed';
+import { Text, View, ScrollView } from '../components/Themed';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { pregameAtom } from '../state';
@@ -35,7 +35,7 @@ export function PregameModal({ navigation }: RootTabScreenProps<'TabOne'>) {
   return (
     <>
       <Topbar />
-      <View style={container.container}>
+      <ScrollView style={container.container}>
         <SwitchInput
           control={{ control, name: 'preloadedBalls' }}
           label="Preloaded Ball?"
@@ -43,7 +43,7 @@ export function PregameModal({ navigation }: RootTabScreenProps<'TabOne'>) {
         <Text style={input.errorText}>{errors.preloadedBalls?.message}</Text>
 
         <Button label="Next" onPress={onSubmit} />
-      </View>
+      </ScrollView>
     </>
   );
 }

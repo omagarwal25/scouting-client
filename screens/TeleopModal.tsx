@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import { View, Text } from '../components/Themed';
+import { ScrollView, Text } from '../components/Themed';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { teleopAtom } from '../state';
@@ -35,7 +35,7 @@ export function TeleopModal({ navigation }: RootTabScreenProps<'TabOne'>) {
   return (
     <>
       <Topbar />
-      <View style={container.container}>
+      <ScrollView style={container.container}>
         <IncrementInput
           control={{ control, name: 'intakeFloor' }}
           label="Balls intaken from floor"
@@ -76,7 +76,7 @@ export function TeleopModal({ navigation }: RootTabScreenProps<'TabOne'>) {
         <Text style={input.errorText}>{errors.defense?.message}</Text>
 
         <Button label="Next" onPress={onSubmit} />
-      </View>
+      </ScrollView>
     </>
   );
 }

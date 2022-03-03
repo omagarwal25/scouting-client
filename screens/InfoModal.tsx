@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import { Text, View } from '../components/Themed';
+import { ScrollView, Text, View } from '../components/Themed';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { GameInfo, gameInfoSchema } from '../models/gameInfo';
@@ -33,7 +33,7 @@ export default function InfoModal({
   });
 
   return (
-    <View style={container.container}>
+    <ScrollView style={container.container}>
       {/* <View style={input}> */}
       <NumericInput control={{ control, name: 'scoutId' }} label="Scout ID" />
       <Text style={input.errorText}>{errors.scoutId?.message}</Text>
@@ -69,6 +69,6 @@ export default function InfoModal({
       <Text style={input.errorText}>{errors.teamColor?.message}</Text>
       {/** Submit Button */}
       <Button label="Next" onPress={onSubmit} />
-    </View>
+    </ScrollView>
   );
 }

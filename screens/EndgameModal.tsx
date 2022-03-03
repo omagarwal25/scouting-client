@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import { Text, View } from '../components/Themed';
+import { ScrollView, Text } from '../components/Themed';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { endgameAtom } from '../state';
@@ -35,7 +35,7 @@ export function EndgameModal({ navigation }: RootTabScreenProps<'TabOne'>) {
   return (
     <>
       <Topbar />
-      <View style={container.container}>
+      <ScrollView style={container.container}>
         <PickerInput
           control={{ control, name: 'climbHeight' }}
           label="Climb Height"
@@ -56,7 +56,7 @@ export function EndgameModal({ navigation }: RootTabScreenProps<'TabOne'>) {
         <Text style={input.errorText}>{errors.climbSuccess?.message}</Text>
 
         <Button label="Next" onPress={onSubmit} />
-      </View>
+      </ScrollView>
     </>
   );
 }

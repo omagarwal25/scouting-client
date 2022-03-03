@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import { View, Text } from '../components/Themed';
+import { Text, ScrollView } from '../components/Themed';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { autoAtom } from '../state';
@@ -35,7 +35,7 @@ export function AutoModal({ navigation }: RootTabScreenProps<'TabOne'>) {
   return (
     <>
       <Topbar />
-      <View style={container.container}>
+      <ScrollView style={container.container}>
         <IncrementInput
           control={{ control, name: 'humanPlayerHigh' }}
           label="Human Player High Goals"
@@ -85,7 +85,7 @@ export function AutoModal({ navigation }: RootTabScreenProps<'TabOne'>) {
         <Text style={input.errorText}>{errors.apron?.message}</Text>
 
         <Button label="Next" onPress={onSubmit} />
-      </View>
+      </ScrollView>
     </>
   );
 }

@@ -2,7 +2,7 @@ import { BarCodeScannedCallback, BarCodeScanner } from 'expo-barcode-scanner';
 import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 import { container } from '../styles/container';
-import { Text, View } from '../components/Themed';
+import { Text, View, ScrollView } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 import { gameInfoAtom } from '../state';
 import { useAtom } from 'jotai';
@@ -38,7 +38,7 @@ export const ScannerModal = ({ navigation }: RootTabScreenProps<'TabOne'>) => {
   }
 
   return (
-    <View style={container.container}>
+    <ScrollView style={container.container}>
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
@@ -48,6 +48,6 @@ export const ScannerModal = ({ navigation }: RootTabScreenProps<'TabOne'>) => {
           <Text>Tap to Scan again</Text>
         </Pressable>
       )}
-    </View>
+    </ScrollView>
   );
 };

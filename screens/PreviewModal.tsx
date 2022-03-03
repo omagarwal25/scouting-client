@@ -1,4 +1,4 @@
-import { View, Text } from '../components/Themed';
+import { View, Text, ScrollView } from '../components/Themed';
 
 // import { gameAtom, saveGameAtom } from '../state';
 import { useAtom } from 'jotai';
@@ -16,7 +16,7 @@ export function PreviewModal({ navigation }: RootTabScreenProps<'TabOne'>) {
   return (
     <>
       <Topbar />
-      <View style={container.container}>
+      <ScrollView style={container.container}>
         <Text>{JSON.stringify(game)}</Text>
         <Button
           onPress={async () => {
@@ -24,7 +24,7 @@ export function PreviewModal({ navigation }: RootTabScreenProps<'TabOne'>) {
           }}
           label="Confirm"
         ></Button>
-      </View>
+      </ScrollView>
     </>
   );
 }
