@@ -35,7 +35,18 @@ export default function InfoModal({
   return (
     <ScrollView style={container.container}>
       {/* <View style={input}> */}
-      <NumericInput control={{ control, name: 'scoutId' }} label="Scout ID" />
+      <PickerInput
+        control={{ control, name: 'scoutId' }}
+        label="Scout ID"
+        items={[
+          { label: 'Blue 1', value: 'Blue1' },
+          { label: 'Blue 2', value: 'Blue2' },
+          { label: 'Blue 3', value: 'Blue3' },
+          { label: 'Red 1', value: 'Red1' },
+          { label: 'Red 2', value: 'Red2' },
+          { label: 'Red 3', value: 'Red3' },
+        ]}
+      />
       <Text style={input.errorText}>{errors.scoutId?.message}</Text>
       {/* </View> */}
       <NumericInput
