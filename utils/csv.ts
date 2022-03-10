@@ -24,7 +24,7 @@ export const decodeGameInfo = (s: string): GameInfo => {
   return {
     matchNumber: Number(split[0]),
     matchType: split[1] as GameInfo['matchType'],
-    scoutId: Number(split[2]),
+    scoutId: split[2] as GameInfo['scoutId'],
     teamColor: split[3] as GameInfo['teamColor'],
     teamNumber: Number(split[4]),
   };
